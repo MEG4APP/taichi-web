@@ -70,10 +70,13 @@ const benefits = [
 const classStructure = [
   ["Apertura y respiración", "10 min", "Llegada al cuerpo, silencio, eje y atención."],
   ["Chikung", "25 min", "Activación energética suave, trabajo respiratorio y desbloqueo."],
-  ["Técnica de Taichi", "45 min", "Principios, secuencias, desplazamientos, equilibrio y continuity."],
+  ["Técnica de Taichi", "45 min", "Principios, secuencias, desplazamientos, equilibrio y continuidad."],
   ["Aplicación escénica", "25 min", "Presencia, mirada, acción, partitura y composición."],
   ["Cierre con I Ching", "15 min", "Reflexión simbólica: cambio, quietud, dirección, energía, proceso."],
 ];
+
+const WHATSAPP_NUMBER = "59176465010";
+const CONTACT_EMAIL = "raizcolectivateatro@gmail.com";
 
 function validateWorkshopData() {
   const errors = [];
@@ -81,18 +84,16 @@ function validateWorkshopData() {
   if (months.length !== 4) errors.push("El programa debe tener exactamente 4 meses.");
 
   months.forEach((month, index) => {
-    if (!month.id || !month.title || !month.objective) {
-      errors.push(`El mes ${index + 1} está incompleto.`);
-    }
-    if (!Array.isArray(month.items) || month.items.length < 5) {
-      errors.push(`El mes ${index + 1} necesita al menos 5 contenidos.`);
-    }
+    if (!month.id || !month.title || !month.objective) errors.push(`El mes ${index + 1} está incompleto.`);
+    if (!Array.isArray(month.items) || month.items.length < 5) errors.push(`El mes ${index + 1} necesita al menos 5 contenidos.`);
   });
 
   if (benefits.length < 8) errors.push("La sección beneficios debe conservar al menos 8 beneficios.");
   if (classStructure.length !== 5) errors.push("La estructura de clase debe tener 5 momentos.");
   if (!classStructure.some(([name]) => name === "Cierre con I Ching")) errors.push("Debe existir un cierre con I Ching.");
   if (!months[0].title.includes("Raíz")) errors.push("El Mes 1 debe conservar el eje de raíz/presencia.");
+  if (!/^\d{8,15}$/.test(WHATSAPP_NUMBER)) errors.push("El número de WhatsApp debe tener código de país y solo dígitos.");
+  if (!CONTACT_EMAIL.includes("@")) errors.push("El email de contacto debe ser válido.");
 
   return errors;
 }
@@ -113,102 +114,70 @@ function Icon({ name = "circle", size = 20, className = "" }) {
 
   switch (name) {
     case "calendar":
-      return (
-        <svg {...common}>
-          <path d="M7 3v3M17 3v3M4.5 9.5h15" />
-          <rect x="4" y="5" width="16" height="15" rx="2.5" />
-          <path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" />
-        </svg>
-      );
+      return <svg {...common}><path d="M7 3v3M17 3v3M4.5 9.5h15" /><rect x="4" y="5" width="16" height="15" rx="2.5" /><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" /></svg>;
     case "laptop":
-      return (
-        <svg {...common}>
-          <rect x="5" y="5" width="14" height="10" rx="1.5" />
-          <path d="M3 19h18l-2-4H5l-2 4Z" />
-        </svg>
-      );
+      return <svg {...common}><rect x="5" y="5" width="14" height="10" rx="1.5" /><path d="M3 19h18l-2-4H5l-2 4Z" /></svg>;
     case "chevron":
-      return (
-        <svg {...common}>
-          <path d="m9 5 7 7-7 7" />
-        </svg>
-      );
+      return <svg {...common}><path d="m9 5 7 7-7 7" /></svg>;
     case "compass":
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="9" />
-          <path d="m15.5 8.5-2.2 5-4.8 2 2.2-5 4.8-2Z" />
-        </svg>
-      );
+      return <svg {...common}><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2.2 5-4.8 2 2.2-5 4.8-2Z" /></svg>;
     case "eye":
-      return (
-        <svg {...common}>
-          <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
-          <circle cx="12" cy="12" r="2.5" />
-        </svg>
-      );
+      return <svg {...common}><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" /><circle cx="12" cy="12" r="2.5" /></svg>;
     case "wave":
-      return (
-        <svg {...common}>
-          <path d="M3 8c3 0 3 3 6 3s3-3 6-3 3 3 6 3" />
-          <path d="M3 14c3 0 3 3 6 3s3-3 6-3 3 3 6 3" />
-        </svg>
-      );
+      return <svg {...common}><path d="M3 8c3 0 3 3 6 3s3-3 6-3 3 3 6 3" /><path d="M3 14c3 0 3 3 6 3s3-3 6-3 3 3 6 3" /></svg>;
     case "wind":
-      return (
-        <svg {...common}>
-          <path d="M3 8h11a3 3 0 1 0-3-3" />
-          <path d="M3 13h16a2.5 2.5 0 1 1-2.5 2.5" />
-          <path d="M3 18h8" />
-        </svg>
-      );
+      return <svg {...common}><path d="M3 8h11a3 3 0 1 0-3-3" /><path d="M3 13h16a2.5 2.5 0 1 1-2.5 2.5" /><path d="M3 18h8" /></svg>;
     case "spark":
-      return (
-        <svg {...common}>
-          <path d="M12 2.5 14.3 9l6.7 3-6.7 3L12 21.5 9.7 15 3 12l6.7-3L12 2.5Z" />
-        </svg>
-      );
+      return <svg {...common}><path d="M12 2.5 14.3 9l6.7 3-6.7 3L12 21.5 9.7 15 3 12l6.7-3L12 2.5Z" /></svg>;
     case "spiral":
-      return (
-        <svg {...common}>
-          <path d="M12 4a8 8 0 1 1-7.3 4.7" />
-          <path d="M12 8a4 4 0 1 1-3.6 2.2" />
-          <path d="M12 11.5a.5.5 0 1 1-.5.5" />
-        </svg>
-      );
+      return <svg {...common}><path d="M12 4a8 8 0 1 1-7.3 4.7" /><path d="M12 8a4 4 0 1 1-3.6 2.2" /><path d="M12 11.5a.5.5 0 1 1-.5.5" /></svg>;
     case "hexagram":
-      return (
-        <svg {...common}>
-          <path d="M5 6h14M5 10h6M13 10h6M5 14h14M5 18h6M13 18h6" />
-        </svg>
-      );
+      return <svg {...common}><path d="M5 6h14M5 10h6M13 10h6M5 14h14M5 18h6M13 18h6" /></svg>;
     default:
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="12" r="8" />
-        </svg>
-      );
+      return <svg {...common}><circle cx="12" cy="12" r="8" /></svg>;
   }
+}
+
+function encodeFormData(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key] ?? "")}`)
+    .join("&");
+}
+
+function createWhatsAppMessage(data) {
+  const lines = [
+    "Hola, quiero información sobre Taichi con Sergio Mercurio.",
+    "",
+    `Nombre: ${data.nombre}`,
+    `Email: ${data.email}`,
+    `WhatsApp: ${data.whatsapp}`,
+    `Perfil escénico: ${data.perfil}`,
+    `Experiencia previa: ${data.experiencia}`,
+    `Mensaje: ${data.mensaje || "Sin mensaje adicional."}`,
+  ];
+
+  return encodeURIComponent(lines.join("\n"));
 }
 
 function ButtonLike({ children, href }) {
   if (href) {
-    return (
-      <a className="inline-flex items-center justify-center rounded-full border border-[#A63A2B]/50 px-7 py-3 text-base font-medium text-[#A63A2B] transition hover:bg-[#A63A2B]/10" href={href}>
-        {children}
-      </a>
-    );
+    return <a className="inline-flex items-center justify-center rounded-full border border-[#A63A2B]/50 px-7 py-3 text-base font-medium text-[#A63A2B] transition hover:bg-[#A63A2B]/10" href={href}>{children}</a>;
   }
 
-  return (
-    <button type="button" className="rounded-full bg-[#2F5D50] px-7 py-3 text-base font-medium text-[#F4EFE7] transition hover:bg-[#23463d]">
-      {children}
-    </button>
-  );
+  return <a href="#inscripcion" className="rounded-full bg-[#2F5D50] px-7 py-3 text-base font-medium text-[#F4EFE7] transition hover:bg-[#23463d]">{children}</a>;
 }
 
 function Card({ children, className = "" }) {
   return <div className={`rounded-[2rem] border border-[#C8A96A]/30 shadow-xl ${className}`}>{children}</div>;
+}
+
+function Field({ label, name, value, onChange, type = "text", required = false }) {
+  return (
+    <label className="grid gap-2 text-sm text-[#F4EFE7]/75">
+      {label}
+      <input name={name} type={type} value={value} onChange={onChange} required={required} className="rounded-2xl border border-[#F4EFE7]/15 bg-[#F4EFE7] px-4 py-3 text-[#101010] outline-none focus:border-[#C8A96A]" />
+    </label>
+  );
 }
 
 function InkFigure() {
@@ -217,13 +186,7 @@ function InkFigure() {
       <div className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "radial-gradient(#101010 0.8px, transparent 0.8px)", backgroundSize: "18px 18px" }} />
       <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#2F5D50]/50 animate-[spin_36s_linear_infinite]" />
       <div className="absolute left-[16%] top-[18%] h-[270px] w-[270px] rounded-full border-r-2 border-t-2 border-[#2F5D50] animate-[spin_42s_linear_infinite_reverse]" />
-      <div className="absolute left-[16%] top-[55%] flex flex-col gap-2 text-[#2F5D50]">
-        <span className="h-1 w-16 bg-current" />
-        <span className="h-1 w-10 bg-current" />
-        <span className="h-1 w-16 bg-current" />
-        <span className="h-1 w-10 bg-current" />
-        <span className="h-1 w-16 bg-current" />
-      </div>
+      <div className="absolute left-[16%] top-[55%] flex flex-col gap-2 text-[#2F5D50]"><span className="h-1 w-16 bg-current" /><span className="h-1 w-10 bg-current" /><span className="h-1 w-16 bg-current" /><span className="h-1 w-10 bg-current" /><span className="h-1 w-16 bg-current" /></div>
       <div className="absolute left-[33%] top-[19%] h-72 w-40 origin-bottom -rotate-12 rounded-[50%] bg-[#101010] blur-[0.2px] transition-transform duration-700 hover:-rotate-6" style={{ clipPath: "polygon(40% 0, 70% 8%, 78% 35%, 100% 50%, 70% 58%, 84% 100%, 47% 83%, 20% 100%, 38% 58%, 0 45%, 28% 33%)" }} />
       <div className="absolute left-[48%] top-[18%] h-16 w-16 rounded-full bg-[#101010]" />
       <div className="absolute left-[58%] top-[31%] h-4 w-40 -rotate-12 rounded-full bg-[#101010]" />
@@ -231,10 +194,80 @@ function InkFigure() {
       <div className="absolute left-[42%] top-[54%] h-5 w-48 rotate-[58deg] rounded-full bg-[#101010]" />
       <div className="absolute left-[23%] top-[63%] h-5 w-52 -rotate-[38deg] rounded-full bg-[#101010]" />
       <div className="absolute bottom-8 right-10 h-20 w-20 rounded-full border-[10px] border-[#A63A2B] border-l-transparent" />
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border border-[#C8A96A] bg-[#F4EFE7]/80 px-5 py-3 text-center text-xs uppercase tracking-[0.25em] text-[#2F5D50]">
-        Taichi · Chikung · I Ching
-      </div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border border-[#C8A96A] bg-[#F4EFE7]/80 px-5 py-3 text-center text-xs uppercase tracking-[0.25em] text-[#2F5D50]">Taichi · Chikung · I Ching</div>
     </div>
+  );
+}
+
+function RegistrationForm() {
+  const [formData, setFormData] = useState({ nombre: "", email: "", whatsapp: "", perfil: "Actor/actriz", experiencia: "Sin experiencia previa", mensaje: "" });
+  const [status, setStatus] = useState("idle");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus("sending");
+
+    const payload = { "form-name": "taichi-sergio-mercurio-inscripcion", ...formData };
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeFormData(payload),
+      });
+
+      setStatus("sent");
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${createWhatsAppMessage(formData)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      console.error("Error enviando formulario:", error);
+      setStatus("error");
+    }
+  };
+
+  return (
+    <section id="inscripcion" className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <div className="grid gap-8 rounded-[2.5rem] border border-[#C8A96A]/30 bg-[#101010] p-6 text-[#F4EFE7] shadow-2xl md:p-10 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Inscripción</p>
+          <h2 className="font-serif text-4xl leading-tight md:text-6xl">Solicita información y reserva tu lugar</h2>
+          <p className="mt-6 text-lg leading-relaxed text-[#F4EFE7]/70">Completa el formulario. Tu registro quedará guardado en Netlify Forms, se abrirá WhatsApp con tu mensaje listo para enviar y podrás activar notificaciones automáticas por email desde Netlify.</p>
+          <div className="mt-8 rounded-2xl border border-[#F4EFE7]/10 bg-[#F4EFE7]/5 p-5 text-sm leading-relaxed text-[#F4EFE7]/70"><strong className="text-[#C8A96A]">Recepción sugerida:</strong> {CONTACT_EMAIL}<br /><strong className="text-[#C8A96A]">WhatsApp:</strong> +{WHATSAPP_NUMBER}</div>
+        </div>
+
+        <form name="taichi-sergio-mercurio-inscripcion" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="grid gap-4">
+          <input type="hidden" name="form-name" value="taichi-sergio-mercurio-inscripcion" />
+          <p className="hidden"><label>No completar: <input name="bot-field" onChange={handleChange} /></label></p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Field label="Nombre completo" name="nombre" value={formData.nombre} onChange={handleChange} required />
+            <Field label="Email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Field label="WhatsApp" name="whatsapp" value={formData.whatsapp} onChange={handleChange} required />
+            <label className="grid gap-2 text-sm text-[#F4EFE7]/75">Perfil escénico<select name="perfil" value={formData.perfil} onChange={handleChange} className="rounded-2xl border border-[#F4EFE7]/15 bg-[#F4EFE7] px-4 py-3 text-[#101010] outline-none focus:border-[#C8A96A]"><option>Actor/actriz</option><option>Bailarín/bailarina</option><option>Performer</option><option>Docente escénico</option><option>Otro perfil creativo</option></select></label>
+          </div>
+
+          <label className="grid gap-2 text-sm text-[#F4EFE7]/75">Experiencia previa en Taichi / Chikung<select name="experiencia" value={formData.experiencia} onChange={handleChange} className="rounded-2xl border border-[#F4EFE7]/15 bg-[#F4EFE7] px-4 py-3 text-[#101010] outline-none focus:border-[#C8A96A]"><option>Sin experiencia previa</option><option>Experiencia inicial</option><option>Experiencia intermedia</option><option>Experiencia avanzada</option></select></label>
+
+          <label className="grid gap-2 text-sm text-[#F4EFE7]/75">Mensaje o consulta<textarea name="mensaje" value={formData.mensaje} onChange={handleChange} rows="5" className="resize-none rounded-2xl border border-[#F4EFE7]/15 bg-[#F4EFE7] px-4 py-3 text-[#101010] outline-none focus:border-[#C8A96A]" placeholder="Cuéntanos qué buscas trabajar en este taller." /></label>
+
+          <div className="mt-2 flex flex-wrap gap-3">
+            <button type="submit" disabled={status === "sending"} className="rounded-full bg-[#C8A96A] px-7 py-3 text-base font-medium text-[#101010] transition hover:bg-[#d6bb80] disabled:cursor-not-allowed disabled:opacity-60">{status === "sending" ? "Enviando..." : "Enviar y abrir WhatsApp"}</button>
+            <a href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20Taichi%20con%20Sergio%20Mercurio`} className="inline-flex items-center justify-center rounded-full border border-[#F4EFE7]/30 px-7 py-3 text-base font-medium text-[#F4EFE7] transition hover:bg-[#F4EFE7]/10">Escribir por email</a>
+          </div>
+
+          {status === "sent" && <p className="text-sm text-[#C8A96A]">Registro recibido. Se abrió WhatsApp con el mensaje listo para enviar.</p>}
+          {status === "error" && <p className="text-sm text-[#ffb4a8]">No se pudo enviar el formulario. Prueba nuevamente o escribe por WhatsApp/email.</p>}
+        </form>
+      </div>
+    </section>
   );
 }
 
@@ -245,181 +278,42 @@ export default function TaichiSergioMercurioLanding() {
 
   return (
     <main className="min-h-screen bg-[#F4EFE7] text-[#101010]" style={{ backgroundImage: "linear-gradient(120deg, rgba(200,169,106,.10), transparent 30%, rgba(47,93,80,.07)), radial-gradient(circle at 80% 10%, rgba(166,58,43,.08), transparent 22%)" }}>
-      {validationErrors.length > 0 && (
-        <div className="mx-auto max-w-7xl px-6 pt-6 lg:px-10">
-          <div className="rounded-2xl border border-[#A63A2B]/40 bg-[#A63A2B]/10 p-4 text-sm text-[#A63A2B]">
-            <strong>Revisión de contenido:</strong> {validationErrors.join(" ")}
-          </div>
-        </div>
-      )}
+      {validationErrors.length > 0 && <div className="mx-auto max-w-7xl px-6 pt-6 lg:px-10"><div className="rounded-2xl border border-[#A63A2B]/40 bg-[#A63A2B]/10 p-4 text-sm text-[#A63A2B]"><strong>Revisión de contenido:</strong> {validationErrors.join(" ")}</div></div>}
 
       <section className="relative mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1.05fr_.95fr] lg:px-10 lg:py-16">
         <div className="absolute left-8 top-8 h-20 w-20 rounded-full border border-[#C8A96A]/50" />
         <div className="absolute right-10 top-12 text-xs uppercase tracking-[0.45em] text-[#2F5D50]">Online · 4 meses</div>
-
         <div className="relative z-10 flex flex-col justify-center pt-16 opacity-100 lg:pt-0">
-          <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#2F5D50]">
-            <span className="h-px w-14 bg-[#C8A96A]" />
-            Taller para artistas escénicos
-          </div>
-          <h1 className="font-serif text-6xl leading-[0.9] tracking-[0.05em] md:text-8xl lg:text-9xl">
-            TAICHI
-            <span className="block text-3xl font-normal tracking-[0.45em] text-[#2F5D50] md:text-5xl">CON</span>
-            <span className="block text-4xl tracking-[0.22em] text-[#A63A2B] md:text-6xl">SERGIO MERCURIO</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[#101010]/75">
-            Un entrenamiento corporal, energético y perceptivo para actores, actrices y bailarines: presencia, equilibrio, respiración, dirección y silencio.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Badge iconName="calendar" text="Miércoles y viernes" />
-            <Badge iconName="laptop" text="Modalidad online" />
-            <Badge iconName="circle" text="4 meses" />
-          </div>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <ButtonLike>Solicitar información</ButtonLike>
-            <ButtonLike href="#programa">Ver programa</ButtonLike>
-          </div>
+          <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#2F5D50]"><span className="h-px w-14 bg-[#C8A96A]" />Taller para artistas escénicos</div>
+          <h1 className="font-serif text-6xl leading-[0.9] tracking-[0.05em] md:text-8xl lg:text-9xl">TAICHI<span className="block text-3xl font-normal tracking-[0.45em] text-[#2F5D50] md:text-5xl">CON</span><span className="block text-4xl tracking-[0.22em] text-[#A63A2B] md:text-6xl">SERGIO MERCURIO</span></h1>
+          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[#101010]/75">Un entrenamiento corporal, energético y perceptivo para actores, actrices y bailarines: presencia, equilibrio, respiración, dirección y silencio.</p>
+          <div className="mt-8 flex flex-wrap gap-3"><Badge iconName="calendar" text="Miércoles y viernes" /><Badge iconName="laptop" text="Modalidad online" /><Badge iconName="circle" text="4 meses" /></div>
+          <div className="mt-10 flex flex-wrap gap-4"><ButtonLike>Solicitar información</ButtonLike><ButtonLike href="#programa">Ver programa</ButtonLike></div>
         </div>
-
-        <div className="relative z-10 flex items-center">
-          <InkFigure />
-        </div>
+        <div className="relative z-10 flex items-center"><InkFigure /></div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
-        <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
-          <Card className="bg-[#101010] text-[#F4EFE7]">
-            <div className="p-8 md:p-10">
-              <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Frase fuerza</p>
-              <h2 className="font-serif text-4xl leading-tight md:text-5xl">Moverse menos para estar más presente.</h2>
-              <div className="my-8 h-px bg-[#C8A96A]/40" />
-              <p className="text-xl text-[#F4EFE7]/75">El arte de sostener la presencia.</p>
-            </div>
-          </Card>
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10"><div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr]"><Card className="bg-[#101010] text-[#F4EFE7]"><div className="p-8 md:p-10"><p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Frase fuerza</p><h2 className="font-serif text-4xl leading-tight md:text-5xl">Moverse menos para estar más presente.</h2><div className="my-8 h-px bg-[#C8A96A]/40" /><p className="text-xl text-[#F4EFE7]/75">El arte de sostener la presencia.</p></div></Card><Card className="bg-[#F4EFE7]/80"><div className="p-8 md:p-10"><p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#2F5D50]">Concepto central</p><p className="text-lg leading-relaxed text-[#101010]/78">Taichi con Sergio Mercurio es un espacio de entrenamiento corporal, energético y perceptivo para artistas escénicos. No se plantea como una práctica terapéutica aislada, sino como una disciplina de presencia: una vía para desarrollar concentración, equilibrio, escucha interna, continuidad del movimiento y conciencia energética.</p><p className="mt-5 font-serif text-2xl text-[#A63A2B]">El cuerpo escénico no solo necesita expresividad: necesita raíz, eje, respiración, dirección y silencio.</p></div></Card></div></section>
 
-          <Card className="bg-[#F4EFE7]/80">
-            <div className="p-8 md:p-10">
-              <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#2F5D50]">Concepto central</p>
-              <p className="text-lg leading-relaxed text-[#101010]/78">
-                Taichi con Sergio Mercurio es un espacio de entrenamiento corporal, energético y perceptivo para artistas escénicos. No se plantea como una práctica terapéutica aislada, sino como una disciplina de presencia: una vía para desarrollar concentración, equilibrio, escucha interna, continuidad del movimiento y conciencia energética.
-              </p>
-              <p className="mt-5 font-serif text-2xl text-[#A63A2B]">
-                El cuerpo escénico no solo necesita expresividad: necesita raíz, eje, respiración, dirección y silencio.
-              </p>
-            </div>
-          </Card>
-        </div>
-      </section>
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10"><SectionTitle kicker="Beneficios" title="Una práctica para organizar la presencia" /><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{benefits.map(([title, text, iconName]) => <Card key={title} className="group h-full bg-[#F4EFE7]/80 transition hover:-translate-y-1 hover:border-[#2F5D50]/50 hover:shadow-lg"><div className="p-6"><div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-[#2F5D50]/40 text-[#2F5D50] transition group-hover:bg-[#2F5D50] group-hover:text-[#F4EFE7]"><Icon name={iconName} size={20} /></div><h3 className="font-serif text-2xl text-[#101010]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[#101010]/65">{text}</p></div></Card>)}</div></section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
-        <SectionTitle kicker="Beneficios" title="Una práctica para organizar la presencia" />
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {benefits.map(([title, text, iconName]) => (
-            <Card key={title} className="group h-full bg-[#F4EFE7]/80 transition hover:-translate-y-1 hover:border-[#2F5D50]/50 hover:shadow-lg">
-              <div className="p-6">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-[#2F5D50]/40 text-[#2F5D50] transition group-hover:bg-[#2F5D50] group-hover:text-[#F4EFE7]">
-                  <Icon name={iconName} size={20} />
-                </div>
-                <h3 className="font-serif text-2xl text-[#101010]">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#101010]/65">{text}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10" id="programa"><SectionTitle kicker="Programa" title="Cuatro meses de entrenamiento progresivo" /><div className="mt-8 grid gap-6 lg:grid-cols-[.38fr_.62fr]"><div className="flex flex-col gap-3">{months.map((m, i) => <button key={m.id} type="button" onClick={() => setActive(i)} aria-pressed={active === i} className={`rounded-2xl border p-5 text-left transition ${active === i ? "border-[#2F5D50] bg-[#2F5D50] text-[#F4EFE7]" : "border-[#C8A96A]/30 bg-[#F4EFE7]/80 hover:border-[#2F5D50]/50"}`}><div className="mb-2 text-xs uppercase tracking-[0.3em] opacity-70">Mes {m.id}</div><div className="flex items-center justify-between gap-4 font-serif text-2xl">{m.title}<Icon name="chevron" size={18} /></div></button>)}</div><Card className="min-h-full bg-[#101010] text-[#F4EFE7]"><div className="p-8 md:p-10"><div className="mb-4 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Mes {currentMonth.id}</div><h3 className="font-serif text-4xl md:text-5xl">{currentMonth.title}</h3><p className="mt-4 text-lg text-[#F4EFE7]/70"><span className="text-[#C8A96A]">Objetivo:</span> {currentMonth.objective}</p><div className="mt-8 grid gap-3 md:grid-cols-2">{currentMonth.items.map((item) => <div key={item} className="rounded-2xl border border-[#F4EFE7]/10 bg-[#F4EFE7]/5 p-4 text-sm leading-relaxed text-[#F4EFE7]/78">{item}</div>)}</div></div></Card></div></section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10" id="programa">
-        <SectionTitle kicker="Programa" title="Cuatro meses de entrenamiento progresivo" />
-        <div className="mt-8 grid gap-6 lg:grid-cols-[.38fr_.62fr]">
-          <div className="flex flex-col gap-3">
-            {months.map((m, i) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-pressed={active === i}
-                className={`rounded-2xl border p-5 text-left transition ${active === i ? "border-[#2F5D50] bg-[#2F5D50] text-[#F4EFE7]" : "border-[#C8A96A]/30 bg-[#F4EFE7]/80 hover:border-[#2F5D50]/50"}`}
-              >
-                <div className="mb-2 text-xs uppercase tracking-[0.3em] opacity-70">Mes {m.id}</div>
-                <div className="flex items-center justify-between gap-4 font-serif text-2xl">
-                  {m.title}
-                  <Icon name="chevron" size={18} />
-                </div>
-              </button>
-            ))}
-          </div>
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10"><SectionTitle kicker="Cada clase" title="Una estructura ritual, técnica y creativa" /><div className="mt-8 overflow-hidden rounded-[2rem] border border-[#C8A96A]/30 bg-[#F4EFE7]/80 shadow-xl">{classStructure.map(([name, time, desc], index) => <div key={name} className="grid gap-4 border-b border-[#C8A96A]/20 p-6 last:border-b-0 md:grid-cols-[.25fr_.18fr_1fr] md:items-center"><div className="font-serif text-2xl text-[#A63A2B]">{String(index + 1).padStart(2, "0")}. {name}</div><div className="w-fit rounded-full border border-[#2F5D50]/40 px-4 py-2 text-sm uppercase tracking-[0.2em] text-[#2F5D50]">{time}</div><p className="text-[#101010]/70">{desc}</p></div>)}</div></section>
 
-          <Card className="min-h-full bg-[#101010] text-[#F4EFE7]">
-            <div className="p-8 md:p-10">
-              <div className="mb-4 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Mes {currentMonth.id}</div>
-              <h3 className="font-serif text-4xl md:text-5xl">{currentMonth.title}</h3>
-              <p className="mt-4 text-lg text-[#F4EFE7]/70">
-                <span className="text-[#C8A96A]">Objetivo:</span> {currentMonth.objective}
-              </p>
-              <div className="mt-8 grid gap-3 md:grid-cols-2">
-                {currentMonth.items.map((item) => (
-                  <div key={item} className="rounded-2xl border border-[#F4EFE7]/10 bg-[#F4EFE7]/5 p-4 text-sm leading-relaxed text-[#F4EFE7]/78">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10"><div className="relative overflow-hidden rounded-[2.5rem] bg-[#2F5D50] p-8 text-[#F4EFE7] shadow-2xl md:p-12"><div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#C8A96A]/40" /><div className="absolute bottom-8 right-12 h-20 w-20 rounded-full border-[10px] border-[#A63A2B] border-l-transparent" /><p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Taichi · Chikung · I Ching · Presencia escénica</p><h2 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">Para cuerpos que crean. Para artistas que necesitan volver al centro.</h2><p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#F4EFE7]/75">Durante 4 meses trabajaremos el cuerpo como territorio de disciplina, respiración y autoconocimiento.</p><a href="#inscripcion" className="mt-8 inline-flex rounded-full bg-[#F4EFE7] px-8 py-3 text-base font-medium text-[#2F5D50] transition hover:bg-white">Inscribirme al taller</a></div></section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
-        <SectionTitle kicker="Cada clase" title="Una estructura ritual, técnica y creativa" />
-        <div className="mt-8 overflow-hidden rounded-[2rem] border border-[#C8A96A]/30 bg-[#F4EFE7]/80 shadow-xl">
-          {classStructure.map(([name, time, desc], index) => (
-            <div key={name} className="grid gap-4 border-b border-[#C8A96A]/20 p-6 last:border-b-0 md:grid-cols-[.25fr_.18fr_1fr] md:items-center">
-              <div className="font-serif text-2xl text-[#A63A2B]">
-                {String(index + 1).padStart(2, "0")}. {name}
-              </div>
-              <div className="w-fit rounded-full border border-[#2F5D50]/40 px-4 py-2 text-sm uppercase tracking-[0.2em] text-[#2F5D50]">{time}</div>
-              <p className="text-[#101010]/70">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#2F5D50] p-8 text-[#F4EFE7] shadow-2xl md:p-12">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#C8A96A]/40" />
-          <div className="absolute bottom-8 right-12 h-20 w-20 rounded-full border-[10px] border-[#A63A2B] border-l-transparent" />
-          <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Taichi · Chikung · I Ching · Presencia escénica</p>
-          <h2 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">Para cuerpos que crean. Para artistas que necesitan volver al centro.</h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#F4EFE7]/75">
-            Durante 4 meses trabajaremos el cuerpo como territorio de disciplina, respiración y autoconocimiento.
-          </p>
-          <button type="button" className="mt-8 rounded-full bg-[#F4EFE7] px-8 py-3 text-base font-medium text-[#2F5D50] transition hover:bg-white">
-            Inscribirme al taller
-          </button>
-        </div>
-      </section>
+      <RegistrationForm />
     </main>
   );
 }
 
 function Badge({ iconName, text }) {
-  return (
-    <div className="flex items-center gap-2 rounded-full border border-[#C8A96A]/40 bg-[#F4EFE7]/70 px-4 py-2 text-sm uppercase tracking-[0.15em] text-[#2F5D50]">
-      <Icon name={iconName} size={18} />
-      {text}
-    </div>
-  );
+  return <div className="flex items-center gap-2 rounded-full border border-[#C8A96A]/40 bg-[#F4EFE7]/70 px-4 py-2 text-sm uppercase tracking-[0.15em] text-[#2F5D50]"><Icon name={iconName} size={18} />{text}</div>;
 }
 
 function SectionTitle({ kicker, title }) {
-  return (
-    <div className="max-w-3xl">
-      <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#2F5D50]">
-        <span className="h-px w-12 bg-[#C8A96A]" />
-        {kicker}
-      </div>
-      <h2 className="font-serif text-4xl leading-tight tracking-[0.02em] md:text-6xl">{title}</h2>
-    </div>
-  );
+  return <div className="max-w-3xl"><div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#2F5D50]"><span className="h-px w-12 bg-[#C8A96A]" />{kicker}</div><h2 className="font-serif text-4xl leading-tight tracking-[0.02em] md:text-6xl">{title}</h2></div>;
 }
 
 if (typeof console !== "undefined") {
@@ -430,4 +324,7 @@ if (typeof console !== "undefined") {
   console.assert(benefits.length >= 8, "Debe haber al menos ocho beneficios.");
   console.assert(classStructure.length === 5, "La clase debe tener cinco momentos pedagógicos.");
   console.assert(classStructure.some(([name]) => name === "Cierre con I Ching"), "Debe existir un cierre con I Ching.");
+  console.assert(/^\d{8,15}$/.test(WHATSAPP_NUMBER), "WhatsApp debe incluir código de país y solo dígitos.");
+  console.assert(CONTACT_EMAIL.includes("@"), "Debe existir un email válido.");
+  console.assert(createWhatsAppMessage({ nombre: "Test", email: "test@test.com", whatsapp: "59170000000", perfil: "Actor/actriz", experiencia: "Sin experiencia previa", mensaje: "Hola" }).includes("Test"), "El mensaje de WhatsApp debe incluir el nombre del interesado.");
 }
