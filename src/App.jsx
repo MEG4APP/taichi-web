@@ -285,7 +285,7 @@ export default function TaichiSergioMercurioLanding() {
         <div className="absolute right-10 top-12 text-xs uppercase tracking-[0.45em] text-[#2F5D50]">Online · 4 meses</div>
         <div className="relative z-10 flex flex-col justify-center pt-16 opacity-100 lg:pt-0">
           <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-[#2F5D50]"><span className="h-px w-14 bg-[#C8A96A]" />Taller para artistas escénicos</div>
-          <h1 className="font-serif text-6xl leading-[0.9] tracking-[0.05em] md:text-8xl lg:text-9xl">TAICHI<span className="block text-3xl font-normal tracking-[0.45em] text-[#2F5D50] md:text-5xl">CON</span><span className="block text-4xl tracking-[0.22em] text-[#A63A2B] md:text-6xl">SERGIO MERCURIO</span></h1>
+          <h1 className="font-serif text-6xl leading-[0.9] tracking-[0.05em] md:text-8xl lg:text-9xl">TAICHI<span className="block text-3xl font-normal tracking-[0.45em] text-[#2F5D50] md:text-5xl" translate="no">CON</span><span className="block text-4xl tracking-[0.22em] text-[#A63A2B] md:text-6xl">SERGIO MERCURIO</span></h1>
           <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[#101010]/75">Un entrenamiento corporal, energético y perceptivo para actores, actrices y bailarines: presencia, equilibrio, respiración, dirección y silencio.</p>
           <div className="mt-8 flex flex-wrap gap-3"><Badge iconName="calendar" text="Miércoles y viernes" /><Badge iconName="laptop" text="Modalidad online" /><Badge iconName="circle" text="4 meses" /></div>
           <div className="mt-10 flex flex-wrap gap-4"><ButtonLike>Solicitar información</ButtonLike><ButtonLike href="#programa">Ver programa</ButtonLike></div>
