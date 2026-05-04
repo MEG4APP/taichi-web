@@ -313,6 +313,39 @@ function InstructorSection() {
   );
 }
 
+function BooksSection() {
+  return (
+    <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-10">
+      <div className="rounded-[2.5rem] border border-[#C8A96A]/30 bg-[#F4EFE7]/80 p-8 shadow-xl md:p-12">
+        <h3 className="font-serif text-3xl text-[#101010] mb-4">Bibliografía de apoyo</h3>
+        <p className="text-lg leading-relaxed text-[#101010]/75 mb-8">
+          La lectura de estos textos es fundamental para nutrir el trabajo que abordaremos. Representan un anclaje teórico y filosófico que acompaña la experiencia práctica del movimiento y la quietud.
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="flex items-start gap-5 rounded-2xl border border-[#2F5D50]/20 bg-[#F4EFE7] p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#2F5D50]/10 text-[#2F5D50]">
+              <Icon name="hexagram" size={24} />
+            </div>
+            <div>
+              <strong className="block font-serif text-xl text-[#101010]">I Ching</strong>
+              <span className="text-[#A63A2B] font-medium text-sm uppercase tracking-wider">Richard Wilhelm</span>
+            </div>
+          </div>
+          <div className="flex items-start gap-5 rounded-2xl border border-[#2F5D50]/20 bg-[#F4EFE7] p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#2F5D50]/10 text-[#2F5D50]">
+              <Icon name="spiral" size={24} />
+            </div>
+            <div>
+              <strong className="block font-serif text-xl text-[#101010]">Los trece capítulos del Tai Chi</strong>
+              <span className="text-[#A63A2B] font-medium text-sm uppercase tracking-wider">Del maestro Chen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function TaichiSergioMercurioLanding() {
   const [active, setActive] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -426,6 +459,7 @@ export default function TaichiSergioMercurioLanding() {
         </section>
 
         <InstructorSection />
+        <BooksSection />
         <RegistrationForm />
       </main>
     </>
