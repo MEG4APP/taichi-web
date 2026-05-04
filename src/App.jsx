@@ -249,8 +249,13 @@ function InstructorSection() {
         <p className="mt-2 text-xl font-medium text-[#C8A96A] mb-10">Es instructor de TAI CHI</p>
         
         <div className="grid gap-10 md:grid-cols-[.4fr_.6fr] items-start">
-          <div className="overflow-hidden rounded-[2rem] border border-[#C8A96A]/30">
-            <img src="/Instructor.png" alt="Sergio Mercurio" className="h-auto w-full object-cover grayscale opacity-90 transition hover:grayscale-0 hover:opacity-100" />
+          <div className="flex flex-col gap-6">
+            <div className="overflow-hidden rounded-[2rem] border border-[#C8A96A]/30">
+              <img src="/Instructor_or.png" alt="Sergio Mercurio" className="h-auto w-full object-cover grayscale opacity-90 transition hover:grayscale-0 hover:opacity-100" />
+            </div>
+            <div className="overflow-hidden rounded-[2rem] border border-[#C8A96A]/30">
+              <img src="/Instructor_ia.png" alt="Sergio Mercurio IA" className="h-auto w-full object-cover grayscale opacity-90 transition hover:grayscale-0 hover:opacity-100" />
+            </div>
           </div>
           <div className="flex flex-col gap-8 text-[#F4EFE7]/80">
             <p className="text-lg leading-relaxed">
@@ -367,7 +372,7 @@ export default function TaichiSergioMercurioLanding() {
             <p className="mt-4 text-sm font-bold uppercase tracking-[0.2em] text-[#2F5D50]">Para artistas escénicos, actores y bailarines</p>
             <div className="mt-8 flex flex-col gap-4">
               <div className="flex flex-wrap gap-3">
-                <Badge iconName="calendar" text="Miércoles 22 a 23 hs / Sábados 9 a 10 am (ARG)" />
+                <Badge iconName="calendar" text="Miércoles 10 pm / Sábado 10 am (ARG)" />
                 <Badge iconName="laptop" text="ONLINE" />
                 <Badge iconName="circle" text="Bimestral" />
               </div>
@@ -446,8 +451,8 @@ export default function TaichiSergioMercurioLanding() {
               <h3 className="font-serif text-3xl text-[#101010] mb-4">Modalidad</h3>
               <p className="text-lg leading-relaxed text-[#101010]/75">El taller tiene una duración de 2 meses con una regularidad de 2 veces por semana y una práctica de una hora. Incluye además 1 clase individual que forma parte del proceso creativo.</p>
               <div className="mt-6 space-y-2 text-[#2F5D50] font-medium">
-                <p>• Miércoles 22 a 23 hs (Hora Argentina)</p>
-                <p>• Sábados 9 a 10 am (Hora Argentina)</p>
+                <p>• Miércoles 10 pm (Hora Argentina)</p>
+                <p>• Sábado 10 am (Hora Argentina)</p>
                 <p className="text-[#A63A2B] mt-4 font-bold">Clase abierta 9 de mayo</p>
               </div>
             </div>
