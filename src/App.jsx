@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Loader({ onLoaded }) {
   const [fading, setFading] = useState(false);
