@@ -65,9 +65,8 @@ const topics = [
     title: "I CHING",
     objective: "Oráculo para la experiencia creativa.",
     items: [
-      { name: "El I Ching es uno de los oráculos más antiguos de la historia de la humanidad.", desc: "Compilado en China hace más de 3.000 años, el Libro de los Cambios (Yi Jing) es la síntesis más profunda del pensamiento taoísta sobre la naturaleza de la transformación, la polaridad y el devenir." },
-      { name: "Es un libro para consultar.", desc: "No como predicción determinista, sino como espejo de patrones energéticos. La consulta mediante monedas o yarrow activa la conciencia simbólica y el discernimiento intuitivo frente a situaciones complejas." },
-      { name: "En este taller se consultará exclusivamente para la experiencia creativa.", desc: "Utilizaremos los 64 hexagramas como mapa de estados corporales y relacionales. Cada hexagrama corresponde a una cualidad de movimiento, tono y presencia que puede ser explorada desde la práctica somática y el tai chi." }
+      { name: "El I Ching", desc: "Es uno de los oráculos más antiguos de la historia de la humanidad, es un libro para consultar en el caso de este taller se consultará exclusivamente para la experiencia creativa." },
+      { name: "Libros", desc: "I Ching – Richard Wilhem. Los trece capítulos del Tai Chi, del maestro Chen." }
     ]
   }
 ];
@@ -335,11 +334,11 @@ export default function TaichiSergioMercurioLanding() {
             <p className="mt-4 text-sm font-bold uppercase tracking-[0.2em] text-[#2F5D50]">Para artistas escénicos, actores y bailarines</p>
             <div className="mt-8 flex flex-col gap-4">
               <div className="flex flex-wrap gap-3">
-                <Badge iconName="calendar" text="Miércoles 21:30 hs / Sábados 8:00 AM (ARG)" />
+                <Badge iconName="calendar" text="Miércoles 22 a 23 hs / Sábados 9 a 10 am (ARG)" />
                 <Badge iconName="laptop" text="ONLINE" />
                 <Badge iconName="circle" text="Bimestral" />
               </div>
-              <p className="text-sm font-medium text-[#A63A2B]">Comienza sábado 16 de mayo (Clase abierta 9 de mayo)</p>
+              <p className="text-sm font-medium text-[#A63A2B]">Inicia: 16 de mayo (Clase abierta 9 de mayo)</p>
             </div>
             <div className="mt-10 flex flex-wrap gap-4"><ButtonLike>Solicitar información</ButtonLike><ButtonLike href="#programa">Ver programa</ButtonLike></div>
           </div>
@@ -351,9 +350,9 @@ export default function TaichiSergioMercurioLanding() {
             <Card className="bg-[#101010] text-[#F4EFE7]">
               <div className="p-8 md:p-12">
                 <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#C8A96A]">Experiencia</p>
-                <p className="text-lg leading-relaxed text-[#F4EFE7]/80">Unos años atrás me propuse correr una marathón, hacer los 42 km con un objetivo simple, llegar y seguir caminando tranquilo, volver a mi casa y descansar tranquilo. El día anterior a la prueba tuve un encuentro de Tai Chi con mi maestro que duró 5 horas. Estaba terminando el instructorado, de modo que prioricé la práctica. Fueron 5 intensas horas, donde hubo mucho trabajo de piernas. Salí contento con la práctica y con la certeza que al otro día no iba a lograrlo. pero no fue así. Lo hice.</p>
+                <p className="text-lg leading-relaxed text-[#F4EFE7]/80">Unos años atrás me propuse correr una marathón, hacer los 42 km con un objetivo simple, llegar y seguir caminando tranquilo, volver a mi casa y descansar. El día anterior a la prueba tuve un encuentro de Tai Chi con mi maestro que duró 5 horas. Estaba terminando el instructorado, de modo que prioricé la práctica. Fueron 5 intensas horas, donde hubo mucho trabajo de piernas. Salí contento con la práctica y con la certeza que al otro día no iba a lograrlo. pero no fue así. Lo hice.</p>
                 <div className="my-8 h-px bg-[#C8A96A]/30" />
-                <p className="text-lg leading-relaxed text-[#F4EFE7]/80">El día después de la marathón volví a la practica de Tai chi. Estaba dolorido, pero esa vez no pude lograrlo. Eso pasó hace casi dos años.</p>
+                <p className="text-lg leading-relaxed text-[#F4EFE7]/80">El día después de la marathón volví a la practica de Tai chi. Estaba dolorido, pero esa vez no pude hacer una práctica simple. Eso pasó hace casi dos años.</p>
               </div>
             </Card>
             <Card className="bg-[#F4EFE7]/80">
@@ -362,7 +361,7 @@ export default function TaichiSergioMercurioLanding() {
                 <p className="text-lg leading-relaxed text-[#101010]/78">En una de las clases que tuve con el maestro dijo una frase que me movilizó mucho. <strong className="text-[#101010]">Lo único que podemos cambiar en nuestra vida es la forma que respiramos.</strong></p>
                 <p className="mt-4 text-lg leading-relaxed text-[#101010]/78">En el momento que lo dijo respiré, profundo, basta solo que alguien diga la palabra respirar para que respiremos, por eso ahora vos estas respirando más conscientemente.</p>
                 <div className="my-8 h-px bg-[#2F5D50]/20" />
-                <p className="font-serif text-2xl text-[#A63A2B]">La experiencia taller que propongo durará 4 meses y el eje tiene que ver con el movimiento y la respiración.</p>
+                <p className="font-serif text-2xl text-[#A63A2B]">La experiencia taller que propongo durará 2 meses y el eje tiene que ver con el movimiento y la respiración.</p>
                 <p className="mt-4 text-lg leading-relaxed text-[#101010]/78">Los movimientos son 16, y forman parte de lo que es conocido como la FORMA 16 del Tai Chi. Una coreografia. Es un trabajo destinado esencialmente a personas que ponen el cuerpo en el escenario. Esencialmente bailarines y actores. Nadie está excluido.</p>
               </div>
             </Card>
@@ -412,17 +411,16 @@ export default function TaichiSergioMercurioLanding() {
           <div className="rounded-[2.5rem] border border-[#C8A96A]/30 bg-[#F4EFE7]/50 p-8 shadow-xl md:p-12 grid gap-8 md:grid-cols-2">
             <div>
               <h3 className="font-serif text-3xl text-[#101010] mb-4">Modalidad</h3>
-              <p className="text-lg leading-relaxed text-[#101010]/75">El taller tiene una duración de 4 meses con una regularidad de 2 veces por semana y una práctica de una hora. Incluye ademas clases individuales que forman parte del proceso creativo.</p>
+              <p className="text-lg leading-relaxed text-[#101010]/75">El taller tiene una duración de 2 meses con una regularidad de 2 veces por semana y una práctica de una hora. Incluye además 1 clase individual que forma parte del proceso creativo.</p>
               <div className="mt-6 space-y-2 text-[#2F5D50] font-medium">
-                <p>• Miércoles 21:30 a 22:30 (Hora Argentina)</p>
-                <p>• Sábados 8:00 AM a 9:00 AM (Hora Argentina)</p>
+                <p>• Miércoles 22 a 23 hs (Hora Argentina)</p>
+                <p>• Sábados 9 a 10 am (Hora Argentina)</p>
                 <p className="text-[#A63A2B] mt-4 font-bold">Clase abierta 9 de mayo</p>
               </div>
             </div>
             <div>
               <h3 className="font-serif text-3xl text-[#101010] mb-4">El Humor en la Práctica</h3>
               <p className="text-lg leading-relaxed text-[#101010]/75">Existe un preconcepto con respecto a ciertas prácticas, una cierta seriedad, en lo personal no creo que el humor pueda interferir de forma negativa en ningún tipo de práctica de autoconocimiento.</p>
-              <p className="mt-4 text-lg leading-relaxed text-[#101010]/75">De hecho la mayoría de las explicaciones sobre el yin y yang se usará como material la pelicula Kung Fu Panda.</p>
             </div>
           </div>
         </section>
